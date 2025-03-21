@@ -1,23 +1,24 @@
-import React, { useState } from "react";
-import "./../styles/App.css";
+
+import React,{useState} from "react";
+import './../styles/App.css';
 
 const App = () => {
-  const [name, setName] = useState("");
-
+  const [input,setInput] = useState('');
+  const onInput = (e)=>{
+      const {value} = e.target
+    setInput(value)
+  }
+  const onClear = ()=>{
+    setInput('')
+  }
   return (
-    <div className="app-container">
-      {/* Do not remove the main div */}
-      <input
-        type="text"
-        placeholder="Enter your name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="input-field"
-      />
-      {name && <h1 className="greeting">Hello, {name}!</h1>}
+    <div>
+      <p>Enter your name:</p>
+    <input value={input} onChange={onInput} />
+    {!!input.length&&<p>Hello {input}!</p>}
+    <button onClick={onClear}>Clear</button>
     </div>
-  );
-};
+  )
+}
 
-export default App;
-
+export default App
